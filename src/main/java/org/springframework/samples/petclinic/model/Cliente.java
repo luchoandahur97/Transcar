@@ -13,8 +13,8 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 @Entity
 @Table(name = "Cliente")
-@JsonSerialize(using = JacksonCustomOwnerSerializer.class)
-@JsonDeserialize(using = JacksonCustomOwnerDeserializer.class)
+/*@JsonSerialize(using = JacksonCustomOwnerSerializer.class)
+@JsonDeserialize(using = JacksonCustomOwnerDeserializer.class)*/
 
 public class Cliente extends BasePersona{
 
