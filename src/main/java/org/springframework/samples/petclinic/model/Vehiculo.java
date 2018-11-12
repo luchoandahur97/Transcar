@@ -16,36 +16,36 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Entity
 @Table(name = "Vehiculo")
-@JsonSerialize(using = JacksonCustomOwnerSerializer.class)
-@JsonDeserialize(using = JacksonCustomOwnerDeserializer.class)
+/*@JsonSerialize(using = JacksonCustomOwnerSerializer.class)
+@JsonDeserialize(using = JacksonCustomOwnerDeserializer.class)*/
 
 public class Vehiculo {
 	
 	 @Id
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)	
 	 @Column(name = "Patente")
-	 protected String Patente;
+	 protected String patente;
 	 
 	 @Column(name = "Modelo")
 	 @NotEmpty
-	 protected String Modelo;
+	 protected String modelo;
 	 
 	 @Column(name = "Marca")
 	 @NotEmpty
-	 protected String Marca;
+	 protected String marca;
 	 
 	 @Column(name = "Anio")
 	 @NotEmpty
-	 protected int Anio;
+	 protected int anio;
 	 
 	 @Column(name = "Capacidad")
 	 @NotEmpty
-	 protected int Capacidad;
+	 protected int capacidad;
 
 	 @Column(name = "Estado_Vehiculo")
 	 @NotEmpty
-	 protected boolean Estado_Vehiculo;
+	 protected boolean estadoVehiculo;
 
 
-
+	 
 }
