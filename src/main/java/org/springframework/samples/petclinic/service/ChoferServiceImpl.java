@@ -38,7 +38,7 @@ public class ChoferServiceImpl implements ChoferService {
 	@Transactional(readOnly = true)
 	public Collection<Chofer> findAllChoferes() throws DataAccessException {
 		// TODO Auto-generated method stub
-		return ChoferRepository.findAll();
+		return choferRepository.findAll();
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class ChoferServiceImpl implements ChoferService {
 	@Transactional
 	public void deleteChofer(Chofer chofer) throws DataAccessException {
 		// TODO Auto-generated method stub
-		ChoferRepository.delete(chofer);
+		choferRepository.delete(chofer);
 	}
 
 }
