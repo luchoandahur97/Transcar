@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(exposedHeaders = "errors, content-type")
 @RequestMapping("api/vehiculos")
 
-public class VehiculoRest {
+public class VehiculoRestController {
 
 }
