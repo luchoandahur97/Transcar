@@ -33,7 +33,22 @@ public class VehiculoServiceImpl implements VehiculoService{
 	@Override
 	@Transactional(readOnly = true)
 	public Collection<Vehiculo> findAllVehiculos() throws DataAccessException {
-		return vehiculoRepository.findAll();
+		return vehiculoRepository.findAllVehiculos();
+	}
+	@Override
+	public Vehiculo findVehiculoByPatente(int patente) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void saveVehiculo(Vehiculo vehiculo) throws DataAccessException {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void deleteVehiculo(Vehiculo vehiculo) throws DataAccessException {
+		// TODO Auto-generated method stub
+		
 	}
 		
 
