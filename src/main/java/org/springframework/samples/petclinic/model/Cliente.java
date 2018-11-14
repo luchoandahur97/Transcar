@@ -6,11 +6,11 @@ import javax.persistence.Table;
 
 
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.samples.petclinic.rest.JacksonCustomOwnerDeserializer;
+/*import org.springframework.samples.petclinic.rest.JacksonCustomOwnerDeserializer;
 import org.springframework.samples.petclinic.rest.JacksonCustomOwnerSerializer;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;*/
 @Entity
 @Table(name = "Cliente")
 /*@JsonSerialize(using = JacksonCustomOwnerSerializer.class)

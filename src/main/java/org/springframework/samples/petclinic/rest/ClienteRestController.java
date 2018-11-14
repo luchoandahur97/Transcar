@@ -41,12 +41,13 @@ public class ClienteRestController {
 		if(currentCliente == null){
 			return new ResponseEntity<Cliente>(HttpStatus.NOT_FOUND);
 		}
-		currentCliente.setBirthDate(cliente.getBirthDate());
-		currentCliente.setName(cliente.getName());
-		currentCliente.setType(cliente.getType());
-		currentCliente.setOwner(cliente.getOwner());
-		this.clienteService.saveCliente(currentPet);
-		return new ResponseEntity<Cliente>(currentPet, HttpStatus.NO_CONTENT);
+		currentCliente.setNombre(cliente.getNombre());
+		currentCliente.setApellido_p(cliente.getApellido_p());
+		currentCliente.setApellido_m(cliente.getApellido_p());
+		currentCliente.setTelefono(cliente.getTelefono());
+		currentCliente.setEmail(cliente.getEmail());
+		this.clienteService.saveCliente(currentCliente);
+		return new ResponseEntity<Cliente>(currentCliente, HttpStatus.NO_CONTENT);
 	}
 
 
