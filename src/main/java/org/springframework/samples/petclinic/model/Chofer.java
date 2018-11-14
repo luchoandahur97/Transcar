@@ -16,7 +16,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 /*@JsonSerialize(using = JacksonCustomOwnerSerializer.class)
 @JsonDeserialize(using = JacksonCustomOwnerDeserializer.class)*/
 
-public class Chofer extends BasePersona{
+public class Chofer extends Persona{
 
 	 
 	 @Column(name = "nro_licencia")

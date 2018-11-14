@@ -16,7 +16,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 /*@JsonSerialize(using = JacksonCustomOwnerSerializer.class)
 @JsonDeserialize(using = JacksonCustomOwnerDeserializer.class)*/
 
-public class Cliente extends BasePersona{
+public class Cliente extends Persona{
 
 		
 	 @Column(name = "telefono")

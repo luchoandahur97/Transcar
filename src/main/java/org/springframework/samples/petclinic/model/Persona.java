@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class BasePersona {
+public class Persona {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
