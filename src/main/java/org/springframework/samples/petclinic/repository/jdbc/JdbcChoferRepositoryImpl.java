@@ -90,7 +90,7 @@ public class JdbcChoferRepositoryImpl implements ChoferRepository{
 	@Override
 	@Transactional
 	public void delete(Chofer chofer) throws DataAccessException {
-		Map<String, Object> chofer_params = new HashMap<>();
+		/*Map<String, Object> chofer_params = new HashMap<>();
 		chofer_params.put("id", chofer.getId());
         List<Pet> pets = chofer.getPets();
         // cascade delete pets
@@ -109,7 +109,7 @@ public class JdbcChoferRepositoryImpl implements ChoferRepository{
         this.namedParameterJdbcTemplate.update("DELETE FROM chofer WHERE id=:id", chofer_params);
 	
 		
-	}
+	*/}
     
    
    
