@@ -3,7 +3,7 @@ package org.springframework.samples.petclinic.rest;
 import java.util.Collection;
 
 import javax.validation.Valid;
-// MOSTRAR TODOS LOS VEHICULOS
+// MOSTRAR TODOS LOS VEHICULOS()
 import org.springframework.samples.petclinic.service.ClinicService;
 import org.springframework.samples.petclinic.service.VehiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
