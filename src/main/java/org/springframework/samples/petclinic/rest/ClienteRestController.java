@@ -24,8 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ClienteRestController {
 
 	@Autowired
-	private ClienteService clienteService;
-	
+	private ClienteService clienteService;	
 	//REGISTRA LOS DATOS DEL CLIENTE
 	@PreAuthorize( "hasRole(@roles.OWNER_ADMIN)" )
 	@RequestMapping(value = "/{petId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
