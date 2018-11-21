@@ -39,8 +39,8 @@ public class Chofer extends Persona{
 	 @NotEmpty
 	 protected int telefono;
 	 
-	 @OneToMany(cascade = CascadeType.ALL, mappedBy = "chofer", fetch = FetchType.EAGER)
-	 private Set<Chofer> choferes;
+	 /*@OneToMany(cascade = CascadeType.ALL, mappedBy = "chofer", fetch = FetchType.EAGER)
+	 private Set<Chofer> choferes;*/
 	//Getters and Setters
 	public int getNro_licencia() {
 		return nro_licencia;
@@ -66,16 +66,16 @@ public class Chofer extends Persona{
 		this.telefono = telefono;
 	}
 	 
-	protected Set<Chofer> getChoferesInternal() {
+	/*protected Set<Chofer> getChoferesInternal() {
         if (this.choferes == null) {
             this.choferes = new HashSet<>();
         }
         return this.choferes;
-    }
-	public List<Chofer> getChoferes() {
+    }*/
+	/*public List<Chofer> getChoferes() {
         List<Chofer> sortedChoferes = new ArrayList<>(getChoferesInternal());
         PropertyComparator.sort(sortedChoferes, new MutableSortDefinition("name", true, true));
         return Collections.unmodifiableList(sortedChoferes);
-    }
+    }*/
 
 }
