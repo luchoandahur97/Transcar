@@ -4,12 +4,15 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.samples.petclinic.model.Vehiculo;
 import org.springframework.samples.petclinic.repository.VehiculoRepository;
-
+import org.springframework.stereotype.Repository;
+@Repository
+@Profile("jdbc")
 public class JdbcVehiculoRepositoryImpl implements VehiculoRepository{
 	
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
