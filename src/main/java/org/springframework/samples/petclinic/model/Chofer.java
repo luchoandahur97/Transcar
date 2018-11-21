@@ -1,23 +1,10 @@
 package org.springframework.samples.petclinic.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.beans.support.MutableSortDefinition;
-import org.springframework.beans.support.PropertyComparator;
-
 
 @Entity
 @Table(name = "Chofer")
@@ -25,7 +12,6 @@ import org.springframework.beans.support.PropertyComparator;
 @JsonDeserialize(using = JacksonCustomOwnerDeserializer.class)*/
 
 public class Chofer extends Persona{
-
 	 
 	 @Column(name = "nro_licencia")
 	 @NotEmpty
