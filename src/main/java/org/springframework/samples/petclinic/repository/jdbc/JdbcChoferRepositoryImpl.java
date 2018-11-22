@@ -74,7 +74,7 @@ public class JdbcChoferRepositoryImpl implements ChoferRepository{
 	@Override
 	public Collection<Chofer> findAll() throws DataAccessException {
 		List<Chofer> chofer = this.namedParameterJdbcTemplate.query(
-	            "SELECT id, Nombre, Apellido_P, Apellido_M, Nro_Licencia, Tipo_Licencia, Telefono FROM chofer",
+	            "SELECT Id_Chofer, Nombre, Apellido_P, Apellido_M, Nro_Licencia, Tipo_Licencia, Telefono FROM chofer",
 	            new HashMap<String, Object>(),
 	            BeanPropertyRowMapper.newInstance(Chofer.class));
 		

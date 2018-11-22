@@ -43,4 +43,10 @@ public class JdbcVehiculoRepositoryImpl implements VehiculoRepository{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public Collection<Vehiculo> findVehiculosDisponibles() throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

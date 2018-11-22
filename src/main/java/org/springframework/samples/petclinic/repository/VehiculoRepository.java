@@ -8,6 +8,7 @@ public interface VehiculoRepository {
 
 	Vehiculo findVehiculoByPatente(int patente) throws DataAccessException;
 	Collection<Vehiculo> findAllVehiculos() throws DataAccessException;
+	Collection<Vehiculo> findVehiculosDisponibles() throws DataAccessException;
 	void saveVehiculo(Vehiculo vehiculo) throws DataAccessException;
 	void deleteVehiculo(Vehiculo vehiculo) throws DataAccessException;
 }
