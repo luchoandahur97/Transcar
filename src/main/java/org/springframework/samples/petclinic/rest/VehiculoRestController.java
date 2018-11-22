@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.samples.petclinic.model.Vehiculo;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,9 +37,12 @@ public class VehiculoRestController {
 	}
 
 
-@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "/disponibles", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public ResponseEntity<Collection<Vehiculo>> getVehiculoDisponible(){
-	Collection<Vehiculo> vehiculos = this.VehiculoService.findVehiculosDisponibles();
-	return new ResponseEntity<Collection<Vehiculo>>(vehiculos, HttpStatus.OK);
+	Collection<Vehiculo> vehiculosDisp = this.VehiculoService.findVehiculosDisponibles();
+	if(vehiculosDisp.isEmpty()){
+		return new ResponseEntity<Collection<Vehiculo>>(HttpStatus.NOT_FOUND);
+	}
+	return new ResponseEntity<Collection<Vehiculo>>(vehiculosDisp, HttpStatus.OK);
 }
 }
