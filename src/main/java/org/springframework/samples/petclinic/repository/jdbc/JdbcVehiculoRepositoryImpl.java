@@ -46,7 +46,10 @@ public class JdbcVehiculoRepositoryImpl implements VehiculoRepository{
 
 	@Override
 	public Collection<Vehiculo> findVehiculosDisponibles() throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Vehiculo> vehiculos = this.namedParameterJdbcTemplate.query(
+	            "SELECT * FROM vehiculo where estado_Vehiculo='Disponible'",
+	            new HashMap<String, Object>(),
+	            BeanPropertyRowMapper.newInstance(Vehiculo.class));
+	    return vehiculos;
 	}
 }

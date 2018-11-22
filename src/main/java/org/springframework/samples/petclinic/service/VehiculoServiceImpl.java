@@ -50,6 +50,11 @@ public class VehiculoServiceImpl implements VehiculoService{
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public Collection<Vehiculo> findVehiculosDisponibles() throws DataAccessException {
+		// TODO Auto-generated method stub
+		return vehiculoRepository.findVehiculosDisponibles();
+	}
 		
 
 
