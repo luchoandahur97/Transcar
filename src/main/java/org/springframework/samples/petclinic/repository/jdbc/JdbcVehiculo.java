@@ -23,5 +23,9 @@ public class JdbcVehiculo extends Vehiculo {
     public void setChoferId(int choferId) {
         this.choferId = choferId;
     }
+    
+    public void getEstadoVehiculo(String estadoVehiculo) {
+    	this.estadoVehiculo = estadoVehiculo;
+    }
 
 }

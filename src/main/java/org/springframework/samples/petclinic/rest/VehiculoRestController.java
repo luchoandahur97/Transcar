@@ -34,4 +34,11 @@ public class VehiculoRestController {
 		}
 		return new ResponseEntity<Collection<Vehiculo>>(vehiculos, HttpStatus.OK);
 	}
+
+
+@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+public ResponseEntity<Collection<Vehiculo>> getVehiculoDisponible(){
+	Collection<Vehiculo> vehiculos = this.VehiculoService.findVehiculosDisponibles();
+	return new ResponseEntity<Collection<Vehiculo>>(vehiculos, HttpStatus.OK);
+}
 }
