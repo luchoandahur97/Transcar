@@ -1,17 +1,11 @@
 package org.springframework.samples.petclinic.service;
 
 import java.util.Collection;
-
 import org.springframework.samples.petclinic.repository.VehiculoRepository;
 import org.springframework.samples.petclinic.repository.ChoferRepository;
 import org.springframework.samples.petclinic.model.Vehiculo;
-import org.springframework.samples.petclinic.model.Chofer;
-import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DataAccessException;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.orm.ObjectRetrievalFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 public class VehiculoServiceImpl implements VehiculoService{
 	private VehiculoRepository vehiculoRepository;
-	private ChoferRepository choferRepository;
+	//private ChoferRepository choferRepository;
 	
 	@Autowired
 	
@@ -27,13 +21,13 @@ public class VehiculoServiceImpl implements VehiculoService{
 		VehiculoRepository vehiculoRepository,
 		ChoferRepository choferRepository) {
 		this.vehiculoRepository = vehiculoRepository;
-		this.choferRepository = choferRepository;
+		//this.choferRepository = choferRepository;
 		
 		}
 	@Override
 	@Transactional(readOnly = true)
 	public Collection<Vehiculo> findAllVehiculos() throws DataAccessException {
-		return vehiculoRepository.findAllVehiculos();
+		return vehiculoRepository.findAll();
 	}
 	@Override
 	public Vehiculo findVehiculoByPatente(int patente) throws DataAccessException {
@@ -50,11 +44,11 @@ public class VehiculoServiceImpl implements VehiculoService{
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
+	/*@Override
 	public Collection<Vehiculo> findVehiculosDisponibles() throws DataAccessException {
 		// TODO Auto-generated method stub
 		return vehiculoRepository.findVehiculosDisponibles();
-	}
+	}*/
 		
 
 

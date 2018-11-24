@@ -10,7 +10,5 @@ public interface VehiculoService {
 	Collection<Vehiculo> findAllVehiculos() throws DataAccessException;
 	void saveVehiculo(Vehiculo vehiculo) throws DataAccessException;
 	void deleteVehiculo(Vehiculo vehiculo) throws DataAccessException;
-	Collection<Vehiculo> findVehiculosDisponibles() throws DataAccessException;
-	
-	
+	//Collection<Vehiculo> findVehiculosDisponibles() throws DataAccessException;	
 }
