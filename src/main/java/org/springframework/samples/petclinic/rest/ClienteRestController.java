@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @CrossOrigin(exposedHeaders = "errors, content-type")
@@ -48,6 +49,22 @@ public class ClienteRestController {
 		this.clienteService.saveCliente(currentCliente);
 		return new ResponseEntity<Cliente>(currentCliente, HttpStatus.NO_CONTENT);
 	}
+	
+	 @PreAuthorize( "hasRole(@roles.CLIENTE_ADMIN)" )
+		@RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+		public ResponseEntity<Cliente> addCliente(@RequestBody @Valid Cliente cliente, BindingResult bindingResult,
+				UriComponentsBuilder ucBuilder) {
+			BindingErrorsResponse errors = new BindingErrorsResponse();
+			HttpHeaders headers = new HttpHeaders();
+			if (bindingResult.hasErrors() || (cliente == null)) {
+				errors.addAllErrors(bindingResult);
+				headers.add("errors", errors.toJSON());
+				return new ResponseEntity<Cliente>(headers, HttpStatus.BAD_REQUEST);
+			}
+			this.clienteService.saveCliente(cliente);
+			headers.setLocation(ucBuilder.path("/api/owners/{id}").buildAndExpand(cliente.getId()).toUri());
+			return new ResponseEntity<Cliente>(cliente, headers, HttpStatus.CREATED);
+		}
 
 
 }

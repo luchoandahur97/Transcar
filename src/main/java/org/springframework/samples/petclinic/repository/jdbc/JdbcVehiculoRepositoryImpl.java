@@ -63,13 +63,13 @@ public class JdbcVehiculoRepositoryImpl implements VehiculoRepository{
 		// TODO Auto-generated method stub
 		
 	}
-/*
+
 	@Override
 	public Collection<Vehiculo> findVehiculosDisponibles() throws DataAccessException {
 		List<Vehiculo> vehiculos = this.namedParameterJdbcTemplate.query(
-	            "SELECT * FROM vehiculo where estado_Vehiculo='Disponible'",
-	            new HashMap<String, Object>(),
-	            BeanPropertyRowMapper.newInstance(Vehiculo.class));
-	    return vehiculos;
-	}*/
+				"SELECT Patente, Modelo, Marca, Anio, Capacidad, Estado_Vehiculo FROM vehiculo WHERE Estado_Vehiculo = 'Disponible'",
+				new HashMap<String, Object>(),
+				BeanPropertyRowMapper.newInstance(Vehiculo.class));   		
+		return vehiculos;
+	}
 }

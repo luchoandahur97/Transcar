@@ -23,7 +23,7 @@ public class VehiculoRestController {
 	@Autowired
 	private VehiculoService VehiculoService;
 	
-	@PreAuthorize( "hasRole(@roles.CHOFER_ADMIN)" )
+	@PreAuthorize( "hasRole(@roles.VEHICULO_ADMIN)" )
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Collection<Vehiculo>> getVehiculo(){
 		Collection<Vehiculo> vehiculos = this.VehiculoService.findAllVehiculos();
@@ -32,8 +32,8 @@ public class VehiculoRestController {
 		}
 		return new ResponseEntity<Collection<Vehiculo>>(vehiculos, HttpStatus.OK);
 	}
-	/*
-	@PreAuthorize( "hasRole(@roles.CHOFER_ADMIN)" )
+	
+	@PreAuthorize( "hasRole(@roles.VEHICULO_ADMIN)" )
 	@RequestMapping(value = "/disponibles", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Collection<Vehiculo>> getVehiculoDisponible(){
 		Collection<Vehiculo> vehiculosDisp = this.VehiculoService.findVehiculosDisponibles();
@@ -41,5 +41,5 @@ public class VehiculoRestController {
 			return new ResponseEntity<Collection<Vehiculo>>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<Collection<Vehiculo>>(vehiculosDisp, HttpStatus.OK);
-	}*/
+	}
 }
