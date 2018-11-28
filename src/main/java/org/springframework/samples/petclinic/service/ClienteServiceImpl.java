@@ -4,6 +4,9 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.orm.ObjectRetrievalFailureException;
+import org.springframework.samples.petclinic.model.Chofer;
 import org.springframework.samples.petclinic.model.Cliente;
 import org.springframework.samples.petclinic.repository.ClienteRepository;
 import org.springframework.stereotype.Service;
@@ -26,9 +29,16 @@ public class ClienteServiceImpl implements ClienteService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Cliente findClienteById(int id) throws DataAccessException {
 		// TODO Auto-generated method stub
-		return null;
+		Cliente cliente = null;
+		try {
+			cliente = clienteRepository.findById(id);
+		}catch (ObjectRetrievalFailureException|EmptyResultDataAccessException e) {
+			return null;
+		}
+		return cliente;
 	}
 
 	@Override

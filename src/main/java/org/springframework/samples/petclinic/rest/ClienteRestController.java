@@ -7,7 +7,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.samples.petclinic.model.Chofer;
 import org.springframework.samples.petclinic.model.Cliente;
+import org.springframework.samples.petclinic.service.ChoferService;
 import org.springframework.samples.petclinic.service.ClienteService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
@@ -23,48 +25,20 @@ import org.springframework.web.util.UriComponentsBuilder;
 @CrossOrigin(exposedHeaders = "errors, content-type")
 @RequestMapping("api/cliente")
 public class ClienteRestController {
-
 	@Autowired
-	private ClienteService clienteService;	
-	//REGISTRA LOS DATOS DEL CLIENTE
-	@PreAuthorize( "hasRole(@roles.OWNER_ADMIN)" )
-	@RequestMapping(value = "/{petId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Cliente> updatePet(@PathVariable("petId") int petId, @RequestBody @Valid Cliente cliente, BindingResult bindingResult){
-		BindingErrorsResponse errors = new BindingErrorsResponse();
-		HttpHeaders headers = new HttpHeaders();
-		if(bindingResult.hasErrors() || (cliente == null)){
-			errors.addAllErrors(bindingResult);
-			headers.add("errors", errors.toJSON());
-			return new ResponseEntity<Cliente>(headers, HttpStatus.BAD_REQUEST);
-		}
-		Cliente currentCliente = this.clienteService.findClienteById(petId);
-		if(currentCliente == null){
+	private ClienteService clienteService;
+	
+	//POR ID
+	@PreAuthorize( "hasRole(@roles.CLIENTE_ADMIN)" )
+	@RequestMapping(value = "/{clienteId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Cliente> getChofer(@PathVariable("clienteId") int clienteId) {
+		Cliente cliente = null;
+		cliente = this.clienteService.findClienteById(clienteId);
+		if (cliente == null) {
 			return new ResponseEntity<Cliente>(HttpStatus.NOT_FOUND);
 		}
-		currentCliente.setNombre(cliente.getNombre());
-		currentCliente.setApellido_p(cliente.getApellido_p());
-		currentCliente.setApellido_m(cliente.getApellido_p());
-		currentCliente.setTelefono(cliente.getTelefono());
-		currentCliente.setEmail(cliente.getEmail());
-		this.clienteService.saveCliente(currentCliente);
-		return new ResponseEntity<Cliente>(currentCliente, HttpStatus.NO_CONTENT);
+		return new ResponseEntity<Cliente>(cliente, HttpStatus.OK);
 	}
-	
-	 @PreAuthorize( "hasRole(@roles.CLIENTE_ADMIN)" )
-		@RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-		public ResponseEntity<Cliente> addCliente(@RequestBody @Valid Cliente cliente, BindingResult bindingResult,
-				UriComponentsBuilder ucBuilder) {
-			BindingErrorsResponse errors = new BindingErrorsResponse();
-			HttpHeaders headers = new HttpHeaders();
-			if (bindingResult.hasErrors() || (cliente == null)) {
-				errors.addAllErrors(bindingResult);
-				headers.add("errors", errors.toJSON());
-				return new ResponseEntity<Cliente>(headers, HttpStatus.BAD_REQUEST);
-			}
-			this.clienteService.saveCliente(cliente);
-			headers.setLocation(ucBuilder.path("/api/owners/{id}").buildAndExpand(cliente.getId()).toUri());
-			return new ResponseEntity<Cliente>(cliente, headers, HttpStatus.CREATED);
-		}
 
 
 }
