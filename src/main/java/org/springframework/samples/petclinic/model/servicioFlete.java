@@ -11,6 +11,8 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "sv_transporte")
 public class servicioFlete {
@@ -30,5 +32,44 @@ public class servicioFlete {
     @ManyToOne
     @JoinColumn(name = "Patente")
     private Vehiculo vehiculo;
+
+	public Integer getId_servicio() {
+		return id_servicio;
+	}
+
+	public void setId_servicio(Integer id_servicio) {
+		this.id_servicio = id_servicio;
+	}
+
+	public int getMontoServicio() {
+		return montoServicio;
+	}
+
+	public void setMontoServicio(int montoServicio) {
+		this.montoServicio = montoServicio;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public Vehiculo getVehiculo() {
+		return vehiculo;
+	}
+
+	public void setVehiculo(Vehiculo vehiculo) {
+		this.vehiculo = vehiculo;
+	}
+
+	//@JsonIgnore
+    public boolean isNew() {
+        return this.id_servicio == null;
+    }
+    
+    
 
 }
