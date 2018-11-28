@@ -80,32 +80,9 @@ public class JdbcChoferRepositoryImpl implements ChoferRepository{
 		
 	    return chofer;
 	}
-
+	
 	@Override
-	public void delete(Chofer owner) throws DataAccessException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/*@Override
-	@Transactional
 	public void delete(Chofer chofer) throws DataAccessException {
-		Map<String, Object> chofer_params = new HashMap<>();
-		chofer_params.put("id", chofer.getId());
-        List<Chofer> choferes = chofer.getChoferes();
-        
-        for (Chofer chofer1 : choferes){
-        	Map<String, Object> chofer1_params = new HashMap<>();
-        	chofer1_params.put("id", chofer1.getId());
-        	
-            this.namedParameterJdbcTemplate.update("DELETE FROM pets WHERE id=:id", chofer1_params);
-        }
-        this.namedParameterJdbcTemplate.update("DELETE FROM chofer WHERE id=:id", chofer_params);
-	
 		
 	}
-    */
-   
-   
-	
 }

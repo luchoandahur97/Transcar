@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.orm.ObjectRetrievalFailureException;
-import org.springframework.samples.petclinic.model.Chofer;
 import org.springframework.samples.petclinic.model.Cliente;
 import org.springframework.samples.petclinic.repository.ClienteRepository;
 import org.springframework.stereotype.Service;
@@ -44,7 +43,7 @@ public class ClienteServiceImpl implements ClienteService {
 	@Override
 	public Collection<Cliente> findAllClientes() throws DataAccessException {
 		// TODO Auto-generated method stub
-		return null;
+		return clienteRepository.findAll();
 	}
 
 	@Override

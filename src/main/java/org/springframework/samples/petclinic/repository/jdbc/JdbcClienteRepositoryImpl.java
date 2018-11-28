@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.orm.ObjectRetrievalFailureException;
@@ -40,7 +41,6 @@ public class JdbcClienteRepositoryImpl implements ClienteRepository {
 
 	@Override
 	public Cliente findById(int id) throws DataAccessException {
-		// TODO Auto-generated method stub
 		Cliente cliente;
         try {
             Map<String, Object> params = new HashMap<>();
@@ -59,8 +59,16 @@ public class JdbcClienteRepositoryImpl implements ClienteRepository {
 
 	@Override
 	public void save(Cliente cliente) throws DataAccessException {
-		// TODO Auto-generated method stub
-		
+		BeanPropertySqlParameterSource parameterSource = new BeanPropertySqlParameterSource(cliente);
+        if (cliente.isNew()) {
+            Number newKey = this.insertCliente.executeAndReturnKey(parameterSource);
+            cliente.setId(newKey.intValue());
+        } else {
+            this.namedParameterJdbcTemplate.update(
+                "UPDATE cliente SET Nombre=:Nombre, Apellido_P=:Apellido_P, Apellido_M=:Apellido_M, Telefono=:Telefono"
+                + "Email:Email WHERE Id_Cliente=:Id_Cliente",
+                parameterSource);
+        }
 	}
 
 	@Override
@@ -75,7 +83,7 @@ public class JdbcClienteRepositoryImpl implements ClienteRepository {
 
 	@Override
 	public void delete(Cliente cliente) throws DataAccessException {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
