@@ -1,5 +1,7 @@
 package org.springframework.samples.petclinic.rest;
 
+import java.util.Collection;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,19 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class ClienteRestController {
 	@Autowired
 	private ClienteService clienteService;
+	
+	// MOSTRAR TODOS
+	
+	@PreAuthorize( "hasRole(@roles.CLIENTE_ADMIN)" )
+	@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Collection<Cliente>> getCliente() {
+		Collection<Cliente> clientes = this.clienteService.findAllClientes();
+		if (clientes.isEmpty()) {
+			return new ResponseEntity<Collection<Cliente>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Collection<Cliente>>(clientes, HttpStatus.OK);
+	}
+	
 	
 	//POR ID
 	@PreAuthorize( "hasRole(@roles.CLIENTE_ADMIN)" )
