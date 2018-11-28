@@ -44,9 +44,10 @@ public class ClienteRestController {
 	
 	
 	//POR ID
+	
 	@PreAuthorize( "hasRole(@roles.CLIENTE_ADMIN)" )
 	@RequestMapping(value = "/{clienteId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Cliente> getChofer(@PathVariable("clienteId") int clienteId) {
+	public ResponseEntity<Cliente> getCliente(@PathVariable("clienteId") int clienteId) {
 		Cliente cliente = null;
 		cliente = this.clienteService.findClienteById(clienteId);
 		if (cliente == null) {
