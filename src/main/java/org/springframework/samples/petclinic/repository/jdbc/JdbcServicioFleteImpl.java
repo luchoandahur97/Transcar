@@ -17,6 +17,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.orm.ObjectRetrievalFailureException;
 import org.springframework.samples.petclinic.model.Chofer;
+import org.springframework.samples.petclinic.model.Cliente;
 import org.springframework.samples.petclinic.model.servicioFlete;
 import org.springframework.samples.petclinic.repository.servicioFleteRepository;
 import org.springframework.stereotype.Repository;
@@ -44,18 +45,18 @@ public class JdbcServicioFleteImpl implements servicioFleteRepository{
 	
 
 	@Override
-	  public servicioFlete findServicioFleteById(int id) throws DataAccessException {
+	  public servicioFlete findServicioFleteById(int idservicio) throws DataAccessException {
         servicioFlete servicioF;
         try {
             Map<String, Object> params = new HashMap<>();
-            params.put("id_servicio", id);
+            params.put("id_servicio", idservicio);
             servicioF = this.namedParameterJdbcTemplate.queryForObject(
-            		"SELECT * FROM sv_transporte WHERE id_servicio = :id_servicio",
+            		"SELECT id_servicio, monto_servicio, id_socio, patente FROM sv_transporte WHERE id_servicio = :id_servicio",
                 params,
                 BeanPropertyRowMapper.newInstance(servicioFlete.class)
             );
         } catch (EmptyResultDataAccessException ex) {
-            throw new ObjectRetrievalFailureException(servicioFlete.class, id);
+            throw new ObjectRetrievalFailureException(servicioFlete.class, idservicio);
         }
         
         return servicioF;
@@ -64,7 +65,12 @@ public class JdbcServicioFleteImpl implements servicioFleteRepository{
 	@Override
 	public Collection<servicioFlete> findAllServicioFlete() throws DataAccessException {
 		// TODO Auto-generated method stub
-		return null;
+		List<servicioFlete> sFlete = this.namedParameterJdbcTemplate.query(
+	            "SELECT id_servicio, monto_servicio, id_socio, patente FROM sv_transporte",
+	            new HashMap<String, Object>(),
+	            BeanPropertyRowMapper.newInstance(servicioFlete.class));
+		
+	    return sFlete;
 	}
 
 	@Override

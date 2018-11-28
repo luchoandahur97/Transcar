@@ -1,5 +1,6 @@
 package org.springframework.samples.petclinic.service;
 
+import org.springframework.samples.petclinic.repository.ContratoRepository;
 import org.springframework.samples.petclinic.repository.servicioFleteRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,19 +13,19 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.orm.ObjectRetrievalFailureException;
 import org.springframework.samples.petclinic.model.servicioFlete;
 
-
+@Service
 public class servicioFleteServiceImpl implements servicioFleteService {
-
+	private servicioFleteRepository servicioFleteRepository;
 	@Override
 	public servicioFlete findServicioFleteById(int id) throws DataAccessException {
 		// TODO Auto-generated method stub
-		return null;
+		return servicioFleteRepository.findServicioFleteById(id);
 	}
 
 	@Override
 	public Collection<servicioFlete> findAllServicioFlete() throws DataAccessException {
 		// TODO Auto-generated method stub
-		return null;
+		return servicioFleteRepository.findAllServicioFlete();
 	}
 
 	@Override

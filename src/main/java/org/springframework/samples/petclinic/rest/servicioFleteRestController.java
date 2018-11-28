@@ -36,10 +36,10 @@ public class servicioFleteRestController {
 	}
 	
 	@PreAuthorize( "hasRole(@roles.CHOFER_ADMIN)" )
-	@RequestMapping(value = "/{servicioId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<servicioFlete> getServicio(@PathVariable("servicioId") int servicoId) {
-		servicioFlete servicioF = null;
-		servicioF = this.servicioFService.findServicioFleteById(servicoId);
+	@RequestMapping(value = "/{id_servicio}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<servicioFlete> getServicio(@PathVariable("id_servicio") int servicioId) {
+		servicioFlete servicioF= null;
+		servicioF = this.servicioFService.findServicioFleteById(servicioId);
 		if (servicioF == null) {
 			return new ResponseEntity<servicioFlete>(HttpStatus.NOT_FOUND);
 		}
