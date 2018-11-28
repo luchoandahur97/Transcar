@@ -7,11 +7,14 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.orm.ObjectRetrievalFailureException;
 import org.springframework.samples.petclinic.model.Cliente;
 import org.springframework.samples.petclinic.repository.ClienteRepository;
 import org.springframework.stereotype.Repository;
@@ -24,14 +27,34 @@ public class JdbcClienteRepositoryImpl implements ClienteRepository {
 
     private SimpleJdbcInsert insertCliente;
 
-	public JdbcClienteRepositoryImpl(DataSource dataSource)  {
-		// TODO Auto-generated constructor stub
-		this.insertCliente = new SimpleJdbcInsert(dataSource)
-	            .withTableName("cliente")
-	            .usingGeneratedKeyColumns("Id_Cliente");
+    @Autowired
+    public JdbcClienteRepositoryImpl(DataSource dataSource) {
 
-	    this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+        this.insertCliente = new SimpleJdbcInsert(dataSource)
+            .withTableName("cliente")
+            .usingGeneratedKeyColumns("Id_Cliente");
 
+        this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+
+    }
+
+	@Override
+	public Cliente findById(int id) throws DataAccessException {
+		// TODO Auto-generated method stub
+		Cliente cliente;
+        try {
+            Map<String, Object> params = new HashMap<>();
+            params.put("id", id);
+            cliente = this.namedParameterJdbcTemplate.queryForObject(
+            		"SELECT Id_Chofer, Nombre, Apellido_P, Apellido_M, Nro_Licencia, Tipo_Licencia, Telefono FROM chofer WHERE id= :id",
+                params,
+                BeanPropertyRowMapper.newInstance(Cliente.class)
+            );
+        } catch (EmptyResultDataAccessException ex) {
+            throw new ObjectRetrievalFailureException(Cliente.class, id);
+        }
+        
+        return cliente;
 	}
 
 	@Override
@@ -39,6 +62,8 @@ public class JdbcClienteRepositoryImpl implements ClienteRepository {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
 	public Collection<Cliente> findAll() throws DataAccessException {
 		List<Cliente> cliente = this.namedParameterJdbcTemplate.query(
 	            "SELECT * FROM cliente",
@@ -47,10 +72,11 @@ public class JdbcClienteRepositoryImpl implements ClienteRepository {
 		
 	    return cliente;
 	}
-	/*
-	public Chofer findById(int id) throws DataAccessException {
-        Chofer chofer;
-        return chofer;
-    }*/
+
+	@Override
+	public void delete(Cliente cliente) throws DataAccessException {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

@@ -45,9 +45,9 @@ public class JdbcChoferRepositoryImpl implements ChoferRepository{
         Chofer chofer;
         try {
             Map<String, Object> params = new HashMap<>();
-            params.put("id", id);
+            params.put("Id_Chofer", id);
             chofer = this.namedParameterJdbcTemplate.queryForObject(
-            		"SELECT Id_Chofer, Nombre, Apellido_P, Apellido_M, Nro_Licencia, Tipo_Licencia, Telefono FROM chofer WHERE id= :id",
+            		"SELECT Id_Chofer, Nombre, Apellido_P, Apellido_M, Nro_Licencia, Tipo_Licencia, Telefono FROM chofer WHERE Id_Chofer = :Id_Chofer",
                 params,
                 BeanPropertyRowMapper.newInstance(Chofer.class)
             );
