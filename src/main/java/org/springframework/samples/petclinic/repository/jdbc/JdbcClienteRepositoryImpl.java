@@ -46,7 +46,7 @@ public class JdbcClienteRepositoryImpl implements ClienteRepository {
             Map<String, Object> params = new HashMap<>();
             params.put("Id_Cliente", id);
             cliente = this.namedParameterJdbcTemplate.queryForObject(
-            		"SELECT * FROM chofer WHERE Id_Cliente= :Id_Cliente",
+            		"SELECT * FROM cliente WHERE Id_Cliente= :Id_Cliente",
                 params,
                 BeanPropertyRowMapper.newInstance(Cliente.class)
             );
