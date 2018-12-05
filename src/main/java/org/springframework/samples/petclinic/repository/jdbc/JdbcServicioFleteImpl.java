@@ -51,7 +51,8 @@ public class JdbcServicioFleteImpl implements servicioFleteRepository{
             Map<String, Object> params = new HashMap<>();
             params.put("id_servicio", idservicio);
             servicioF = this.namedParameterJdbcTemplate.queryForObject(
-            		"SELECT id_servicio, monto_servicio, id_socio, patente FROM sv_transporte WHERE id_servicio = :id_servicio",
+            		"SELECT id_servicio, monto_servicio, id_socio, patente FROM sv_transporte INNER JOIN Vehiculo ON sv_transporte.patente=Vehiculo.patente"
+            		+ " INNER JOIN Cliente ON sv_transporte.id_socio=Cliente.id_cliente WHERE id_servicio = :id_servicio",
                 params,
                 BeanPropertyRowMapper.newInstance(servicioFlete.class)
             );

@@ -18,7 +18,7 @@ public class servicioFleteServiceImpl implements servicioFleteService {
 	private servicioFleteRepository servicioFleteRepository;
 	@Override
 	public servicioFlete findServicioFleteById(int id) throws DataAccessException {
-		// TODO Auto-generated method stub
+		
 		return servicioFleteRepository.findServicioFleteById(id);
 	}
 
