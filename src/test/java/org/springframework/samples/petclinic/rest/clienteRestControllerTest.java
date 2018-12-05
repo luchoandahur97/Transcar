@@ -66,17 +66,19 @@ public class clienteRestControllerTest {
     @Test
     @WithMockUser(roles="CLIENTE_ADMIN")
     public void testGetOwnerSuccess() throws Exception {
+    	
     	given(this.clienteService.findClienteById(1)).willReturn(clientes.get(0));
         this.mockMvc.perform(get("/api/cliente/1")
         	.accept(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(status().isOk())
             .andExpect(content().contentType("application/json;charset=UTF-8"))
             .andExpect(jsonPath("$.Id_Cliente").value(1))
-            .andExpect(jsonPath("$.Nombre").value("Matias"));
+            .andExpect(jsonPath("$.Nombre").value("Luis"));
+        
     }
     
     @Test
-    @WithMockUser(roles="CLiente_ADMIN")
+    @WithMockUser(roles="CLIENTE_ADMIN")
     public void testGetClienteNotFound() throws Exception {
     	given(this.clienteService.findClienteById(-1)).willReturn(null);
         this.mockMvc.perform(get("/api/cliente/-1")

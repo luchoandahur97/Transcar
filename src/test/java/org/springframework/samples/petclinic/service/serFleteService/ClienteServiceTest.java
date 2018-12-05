@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.samples.petclinic.model.Cliente;
 import org.springframework.samples.petclinic.model.Pet;
+import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.service.ClienteService;
 import org.springframework.samples.petclinic.util.EntityUtils;
 import org.springframework.test.context.ActiveProfiles;
@@ -33,15 +34,15 @@ public class ClienteServiceTest {
 	@Test
     public void shouldFindClientesByLastName() {
         Cliente clientes = this.clienteService.findClienteById(1);
-        assertThat(clientes.getApellido_m()).startsWith("Martinez");
+        assertThat(clientes.getApellido_m()).startsWith("Andahur");
         
     }
 
 	  @Test
 	    public void shouldFindAllClientes(){
-	        Collection<Cliente> cliente = this.clienteService.findAllClientes();
+	        Collection<Cliente> clientes = this.clienteService.findAllClientes();
+	        Cliente petType1 = EntityUtils.getByIdCliente(clientes, Cliente.class, 1);
+	        assertThat(petType1.getNombre()).isEqualTo("Luis");
 	        
-	        
-
 	    }
 }

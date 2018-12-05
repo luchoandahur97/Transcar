@@ -74,7 +74,7 @@ public class JdbcClienteRepositoryImpl implements ClienteRepository {
 	@Override
 	public Collection<Cliente> findAll() throws DataAccessException {
 		List<Cliente> cliente = this.namedParameterJdbcTemplate.query(
-	            "SELECT * FROM cliente",
+	            "SELECT Id_Cliente, Nombre, Apellido_P, Apellido_M, Telefono, Email FROM cliente",
 	            new HashMap<String, Object>(),
 	            BeanPropertyRowMapper.newInstance(Cliente.class));
 		

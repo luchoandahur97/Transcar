@@ -21,6 +21,7 @@ import java.util.Collection;
 import org.springframework.orm.ObjectRetrievalFailureException;
 import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.model.Chofer;
+import org.springframework.samples.petclinic.model.Cliente;
 
 /**
  * Utility methods for handling entities. Separate from the BaseEntity class mainly because of dependency on the
@@ -61,4 +62,13 @@ public abstract class EntityUtils {
             throw new ObjectRetrievalFailureException(entityClass, entityId);
         }
 
+    public static <T extends Cliente> T getByIdCliente(Collection<T> entities, Class<T> entityClass, int entityId)
+            throws ObjectRetrievalFailureException {
+            for (T entity : entities) {
+                if (entity.getId() == entityId && entityClass.isInstance(entity)) {
+                    return entity;
+                }
+            }
+            throw new ObjectRetrievalFailureException(entityClass, entityId);
+        }
 }
