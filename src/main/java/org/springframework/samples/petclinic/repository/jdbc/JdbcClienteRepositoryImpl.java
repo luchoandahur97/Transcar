@@ -46,7 +46,7 @@ public class JdbcClienteRepositoryImpl implements ClienteRepository {
             Map<String, Object> params = new HashMap<>();
             params.put("Id_Cliente", id);
             cliente = this.namedParameterJdbcTemplate.queryForObject(
-            		"SELECT * FROM cliente WHERE Id_Cliente= :Id_Cliente",
+            		"SELECT Nombre, Apellido_P, Apellido_M, Telefono, Email  FROM Cliente WHERE Id_Cliente= :Id_Cliente",
                 params,
                 BeanPropertyRowMapper.newInstance(Cliente.class)
             );
@@ -74,7 +74,7 @@ public class JdbcClienteRepositoryImpl implements ClienteRepository {
 	@Override
 	public Collection<Cliente> findAll() throws DataAccessException {
 		List<Cliente> cliente = this.namedParameterJdbcTemplate.query(
-	            "SELECT Id_Cliente, Nombre, Apellido_P, Apellido_M, Telefono, Email FROM cliente",
+	            "SELECT Id_Cliente, Nombre, Apellido_P, Apellido_M, Telefono, Email FROM Cliente",
 	            new HashMap<String, Object>(),
 	            BeanPropertyRowMapper.newInstance(Cliente.class));
 		
