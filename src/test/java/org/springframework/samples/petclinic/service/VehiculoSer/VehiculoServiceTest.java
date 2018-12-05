@@ -30,7 +30,7 @@ public class VehiculoServiceTest {
 	@Test
     public void shouldFindVehicleByPatente() {
         Vehiculo vehiculos = this.vehiculoService.findVehiculoByPatente("XX44XX");
-        assertThat(vehiculos.getMarca()).startsWith("Toyota");
+        assertThat(vehiculos.getMarca()).startsWith("Nissan");
         
        
     }

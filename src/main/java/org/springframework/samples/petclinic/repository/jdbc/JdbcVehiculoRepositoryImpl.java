@@ -50,7 +50,7 @@ public class JdbcVehiculoRepositoryImpl implements VehiculoRepository{
         try {
             Map<String, Object> params = new HashMap<>();
             params.put("Vehiculo_patente", patente);
-            vehiculo = this.namedParameterJdbcTemplate.queryForObject("SELECT * FROM vehiculos WHERE Vehiculo_patente= :Vehiculo_patente", 
+            vehiculo = this.namedParameterJdbcTemplate.queryForObject("SELECT Patente, Modelo, Marca, Anio, Capacidad, Estado_Vehiculo FROM vehiculo WHERE Patente= :Vehiculo_patente", 
             		params, 
             		BeanPropertyRowMapper.newInstance(Vehiculo.class)
             		);

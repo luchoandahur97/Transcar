@@ -60,7 +60,7 @@ public class clienteRestControllerTest {
     	cliente.setApellido_m("Rivas");
     	cliente.setEmail("matias@gmail.com");
     	cliente.setTelefono(768574636);	
-    	
+    	clientes.add(cliente);
     }
     
     @Test
