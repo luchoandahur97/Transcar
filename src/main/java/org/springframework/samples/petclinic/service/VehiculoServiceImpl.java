@@ -30,9 +30,9 @@ public class VehiculoServiceImpl implements VehiculoService{
 		return vehiculoRepository.findAll();
 	}
 	@Override
-	public Vehiculo findVehiculoByPatente(int patente) throws DataAccessException {
+	public Vehiculo findVehiculoByPatente(String patente) throws DataAccessException {
 		// TODO Auto-generated method stub
-		return null;
+		return vehiculoRepository.findVehiculoByPatente(patente);
 	}
 	@Override
 	public void saveVehiculo(Vehiculo vehiculo) throws DataAccessException {

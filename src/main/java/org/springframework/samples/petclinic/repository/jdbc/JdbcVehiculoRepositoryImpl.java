@@ -3,17 +3,24 @@ package org.springframework.samples.petclinic.repository.jdbc;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.orm.ObjectRetrievalFailureException;
+import org.springframework.samples.petclinic.model.Cliente;
+import org.springframework.samples.petclinic.model.Owner;
+import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.Vehiculo;
 import org.springframework.samples.petclinic.repository.VehiculoRepository;
+import org.springframework.samples.petclinic.util.EntityUtils;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -37,9 +44,23 @@ public class JdbcVehiculoRepositoryImpl implements VehiculoRepository{
     }
     
 	@Override
-	public Vehiculo findVehiculoByPatente(int patente) throws DataAccessException {
+	public Vehiculo findVehiculoByPatente(String patente) throws DataAccessException {
 		// TODO Auto-generated method stub
-		return null;
+		Vehiculo vehiculo;
+        try {
+            Map<String, Object> params = new HashMap<>();
+            params.put("Vehiculo_patente", patente);
+            vehiculo = this.namedParameterJdbcTemplate.queryForObject("SELECT * FROM vehiculos WHERE Vehiculo_patente= :Vehiculo_patente", 
+            		params, 
+            		BeanPropertyRowMapper.newInstance(Vehiculo.class)
+            		);
+        } catch (EmptyResultDataAccessException ex) {
+            throw new ObjectRetrievalFailureException(Vehiculo.class, patente);
+        }
+        
+        return vehiculo;
+      
+		
 	}
 
 	@Override

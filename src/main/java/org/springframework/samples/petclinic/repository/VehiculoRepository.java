@@ -6,7 +6,7 @@ import org.springframework.samples.petclinic.model.Vehiculo;
 
 public interface VehiculoRepository {
 
-	Vehiculo findVehiculoByPatente(int patente) throws DataAccessException;
+	Vehiculo findVehiculoByPatente(String patente) throws DataAccessException;
 	Collection<Vehiculo> findAll() throws DataAccessException;
 	Collection<Vehiculo> findVehiculosDisponibles() throws DataAccessException;
 	void save(Vehiculo vehiculo) throws DataAccessException;
