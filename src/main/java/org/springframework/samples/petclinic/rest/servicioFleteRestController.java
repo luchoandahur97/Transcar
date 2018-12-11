@@ -25,7 +25,7 @@ public class servicioFleteRestController {
 	@Autowired
 	private servicioFleteService servicioFService;
 	
-	@PreAuthorize( "hasRole(@roles.CHOFER_ADMIN)" )
+	@PreAuthorize( "hasRole(@roles.PC_ADMIN)" )
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Collection<servicioFlete>> getServicio() {
 		Collection<servicioFlete> serviciosF = this.servicioFService.findAllServicioFlete();

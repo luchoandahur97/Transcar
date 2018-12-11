@@ -28,9 +28,8 @@ public class servFleteService {
 	
 	@Test
     public void shouldFindOwnersByLastName() {
-        servicioFlete choferes = this.fleteService.findServicioFleteById(1000);
-        assertThat(choferes.getCliente().getApellido_m().startsWith("Andahur"));
-        
+        servicioFlete serv = this.fleteService.findServicioFleteById(1000);
+        assertThat(serv.getMontoServicio()==60000);
        
     }
 

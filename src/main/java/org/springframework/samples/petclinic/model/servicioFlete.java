@@ -19,26 +19,20 @@ public class servicioFlete {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Integer id_servicio;
+    protected Integer idServicio;
 	
 	@Column(name = "Monto_Servicio")
 	@NotEmpty
 	protected int montoServicio;
 	 
-	@ManyToOne
-    @JoinColumn(name = "id_socio")
-    private Cliente cliente;
+	
 
-    @ManyToOne
-    @JoinColumn(name = "Patente")
-    private Vehiculo vehiculo;
-
-	public Integer getId_servicio() {
-		return id_servicio;
+	public Integer getIdServicio() {
+		return idServicio;
 	}
 
-	public void setId_servicio(Integer id_servicio) {
-		this.id_servicio = id_servicio;
+	public void setIdServicio(Integer id_servicio) {
+		this.idServicio = id_servicio;
 	}
 
 	public int getMontoServicio() {
@@ -49,25 +43,9 @@ public class servicioFlete {
 		this.montoServicio = montoServicio;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-
-	public Vehiculo getVehiculo() {
-		return vehiculo;
-	}
-
-	public void setVehiculo(Vehiculo vehiculo) {
-		this.vehiculo = vehiculo;
-	}
-
 	//@JsonIgnore
     public boolean isNew() {
-        return this.id_servicio == null;
+        return this.idServicio == null;
     }
     
     

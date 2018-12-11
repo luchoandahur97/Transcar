@@ -19,7 +19,13 @@ public class servicioFleteServiceImpl implements servicioFleteService {
 	@Override
 	public servicioFlete findServicioFleteById(int id) throws DataAccessException {
 		
-		return servicioFleteRepository.findServicioFleteById(id);
+		servicioFlete serv=null;
+		try {
+			serv = servicioFleteRepository.findServicioFleteById(id);
+		}catch (ObjectRetrievalFailureException|EmptyResultDataAccessException e) {
+			return null;
+		}
+		return serv;
 	}
 
 	@Override
